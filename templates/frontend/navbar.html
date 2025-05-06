@@ -1,0 +1,171 @@
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 px-2 mt-3">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-start" href="#">
+            Fashion Store 
+        </a>
+        <form action="#" class="d-flex mx-auto search-bar">
+            <input class="form-control rounded-0" type="search" name="searchTerm" placeholder="Search..." aria-label="Search">
+            <button class="btn search-button rounded-0" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+        <div class="d-flex align-items-center">
+            <!-- Authenticated User Menu Placeholder -->
+            <div class="d-flex flex-column">
+                <a href="#" class="text-decoration-none text-black">
+                    <div class="d-flex flex-column">
+                        <i class="fas fa-user fs-4 me-1"></i> 
+                        <span class="fw-bold">User Name</span>
+                    </div>
+                </a>
+                <hr>
+                <a href="#" class="text-decoration-none text-black" title="Logout">
+                    <div class="d-flex gap-1">
+                        <i class="fas fa-sign-out fs-4"></i> 
+                        <span class="fw-bold">Logout</span>
+                    </div>
+                </a>
+            </div>
+            <!-- Guest Menu Placeholder -->
+            <div class="d-flex gap-2">
+                <a href="#" class="text-decoration-none text-black" title="Register">
+                    <i class="fas fa-user-plus fs-4"></i>
+                </a>
+                <a href="#" class="text-decoration-none text-black" title="Login">
+                    <i class="fas fa-sign-in fs-4"></i>
+                </a>
+            </div>
+            <a href="#" class="text-dark icon-with-badge" title="Cart">
+                <i class="fas fa-shopping-cart fs-4"></i>
+                <span class="icon-badge">0</span>
+            </a>
+            <div class="price mx-3 border border-danger border-2 p-1 rounded">
+                $0
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col-mad">
+        <div class="bg-white shadow-sm">
+            <div class="container py-2">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+
+                    <!-- Example Category with Subcategories and Child Categories -->
+                    <li class="nav-item dropdown position-static">
+                        <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                            Category Name
+                        </a>
+                        <div class="dropdown-menu mt-0 mega-menu">
+                            <div class="container py-4">
+                                <div class="row">
+                                    <div class="col-md-4 mb-2">
+                                        <a href="#" class="text-decoration-none text-dark fw-bold sub-link">Subcategory Name (10)</a>
+                                        <a class="dropdown-item" href="#">Childcategory Name (5)</a>
+                                        <!-- More childcategories... -->
+                                    </div>
+                                    <!-- More subcategories... -->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Brands -->
+                    <li class="nav-item dropdown position-static">
+                        <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                            Brands
+                        </a>
+                        <div class="dropdown-menu mt-0 mega-menu">
+                            <div class="container py-4">
+                                <div class="row">
+                                    <div class="col-md-4 mb-2">
+                                        <a href="#" class="text-decoration-none text-dark fw-bold sub-link">Brand Name (15)</a>
+                                    </div>
+                                    <!-- More brands... -->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Sizes -->
+                    <li class="nav-item dropdown position-static">
+                        <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                            Sizes
+                        </a>
+                        <div class="dropdown-menu mt-0 mega-menu">
+                            <div class="container py-4">
+                                <div class="row">
+                                    <div class="col-md-4 mb-2">
+                                        <a href="#" class="text-decoration-none text-dark fw-bold sub-link">Size Name (8)</a>
+                                    </div>
+                                    <!-- More sizes... -->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Colors -->
+                    <li class="nav-item dropdown position-static">
+                        <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown">
+                            Colors
+                        </a>
+                        <div class="dropdown-menu mt-0 mega-menu">
+                            <div class="container py-4">
+                                <div class="row">
+                                    <div class="col-md-4 mb-2">
+                                        <div class="me-1 border border-light-subtle border-2" style="background-color:red;width:30px;height:30px;"></div>
+                                        <a href="#" class="text-decoration-none text-dark fw-bold sub-link">Red (12)</a>
+                                    </div>
+                                    <!-- More colors... -->
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sort and Pagination Options (Visible on specific routes) -->
+<div class="row my-2">
+    <div class="col-md-12">
+        <div class="mb-2 bg-white p-4 shadow-sm">
+            <div class="d-flex justify-content-between">
+                <form method="GET" action="#">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <span class="fw-bold">Showing</span>
+                        <div class="mx-2">
+                            <select class="form-select form-select-sm" name="per_page">
+                                <option value="10" class="fw-bold">10</option>
+                                <option value="25" class="fw-bold">25</option>
+                                <option value="100" class="fw-bold">100</option>
+                            </select>
+                        </div>
+                        <span class="fw-bold">per page</span>
+                    </div>
+                </form>
+                <form method="GET" action="#">
+                    <label for="field" class="fw-bold">Sort by:</label>
+                    <select name="field" id="field">
+                        <option value="" disabled class="d-none"></option>
+                        <option value="name" class="fw-bold">Name</option>
+                        <option value="price" class="fw-bold">Price</option>
+                        <option value="created_at" class="fw-bold">Date</option>
+                    </select>
+                    <select name="direction" id="direction">
+                        <option value="" disabled class="d-none"></option>
+                        <option value="asc" class="fw-bold">Ascending</option>
+                        <option value="desc" class="fw-bold">Descending</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
