@@ -9,8 +9,10 @@ use App\Models\Coupon;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Stripe\Checkout\Session;
+use App\Models\StripeSession;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\RedirectResponse;
+use Stripe\Exception\InvalidRequestException;
 
 class OrderController extends Controller
 {
@@ -19,6 +21,8 @@ class OrderController extends Controller
     public function __construct()
     {
         $this->cart = session()->get('cart', []);
+        //provide the stripe key
+        Stripe::setApiKey(config('services.stripe.secret'));
     }
 
     /**
@@ -26,8 +30,6 @@ class OrderController extends Controller
      */
     public function payOrderByStripe() : RedirectResponse | string
     {
-        //provide the stripe key
-        Stripe::setApiKey(config('services.stripe.secret'));
         //proceed to payment
         try {
             $checkout_session = Session::create([
@@ -42,7 +44,7 @@ class OrderController extends Controller
                     'quantity' => 1
                 ]],
                 'mode' => 'payment',
-                'success_url' => route('order.success', ['session_id' => '{CHECKOUT_SESSION_ID}'])
+                'success_url' => route('order.success').'?session_id={CHECKOUT_SESSION_ID}'
             ]);
             return redirect($checkout_session->url);
         } catch (ErrorException $e) {
@@ -86,7 +88,20 @@ class OrderController extends Controller
     public function successPaid(Request $request) : View | RedirectResponse
     {
         $sessionId = $request->get('session_id');
-        if($sessionId) {
+        //if no session id generated
+        if(!$sessionId) {
+            return to_route('home');
+        }
+        //check if the session id already exists
+        if(StripeSession::where('session_id',$sessionId)->exists()) {
+            return to_route('home')->with('error','Something went wrong try again later');
+        }
+        try {
+            Session::retrieve($sessionId);
+            //store the session id to prevent reuse
+            StripeSession::create([
+                'session_id' => $sessionId
+            ]);
             //store the orders
             foreach($this->cart as $key => $item) {
                $order = Order::create([
@@ -103,7 +118,7 @@ class OrderController extends Controller
             session()->forget('cartItemsTotal');
             session()->forget('applied_coupon');
             return view('payments.success-paid');
-        }else {
+        } catch (InvalidRequestException $e) {
             return to_route('home');
         }
     }
