@@ -178,3 +178,7 @@ Route::middleware('auth')->group(function() {
     //review routes
     Route::post('review/store', [FrontendReviewController::class,'store'])->name('review.store');
 });
+
+// Route::get('/phpinfo', function () {
+//     phpinfo();
+// });
