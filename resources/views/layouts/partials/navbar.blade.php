@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 px-2 mt-3">
     <div class="container">
         <a class="navbar-brand d-flex align-items-start" href="{{ route('home') }}">
-            Fashion Store 
+            Gridiron Warrior Helmet Hat 
         </a>
         <form action="{{ route('search.products') }}" class="d-flex mx-auto search-bar">
             <input 
@@ -41,10 +41,12 @@
             @guest
                 <div class="d-flex gap-2">
                     <a href="{{ route('user.register') }}" class="text-decoration-none text-black" title="Register">
-                        <i class="fas fa-user-plus fs-4"></i>
+                        <!-- <i class="fas fa-user-plus fs-4"></i> -->
+                         Register
                     </a>
                     <a href="{{ route('login') }}" class="text-decoration-none text-black" title="Login">
-                        <i class="fas fa-sign-in fs-4"></i>
+                        <!-- <i class="fas fa-sign-in fs-4"></i> -->
+                         Login
                     </a>
                 </div>
             @endguest
