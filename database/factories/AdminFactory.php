@@ -20,10 +20,10 @@ class AdminFactory extends Factory
     {
         return [
             //
-            'name' => 'admin',
-            'email' => 'admin@email.com',
+            'name' => 'Super Admin',
+            'email' => 'shadow902@gmail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('password12'),
+            'password' => Hash::make('Welc0me!1225'),
             'remember_token' => Str::random(10),
         ];
     }

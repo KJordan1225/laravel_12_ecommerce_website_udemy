@@ -26,6 +26,7 @@ Route::middleware('admin.guest')->group(function() {
     Route::post('admin/auth', [AdminController::class,'auth'])->name('admin.auth');
 });
 
+
 /*****admin auth routes*******/
 Route::middleware('admin')->prefix('admin')->group(function() {
     Route::get('dashboard', [AdminController::class,'index'])->name('admin.index');

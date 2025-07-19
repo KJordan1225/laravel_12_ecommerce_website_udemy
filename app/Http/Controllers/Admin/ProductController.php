@@ -20,6 +20,7 @@ use Illuminate\View\View;
 class ProductController extends Controller
 {
     private array $imageFields = ['thumbnail','first_image','second_image','third_image'];
+    
 
     /**
      * Display a listing of the resource.

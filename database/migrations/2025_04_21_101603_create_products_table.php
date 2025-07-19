@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('thumbnail');
             $table->string('first_image')->nullable();
             $table->string('second_image')->nullable();
-            $table->string('third_image')->nullable();
+            $table->string('third_image')->nullable();            
             $table->boolean('status')->default(1);
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->foreignId('subcategory_id')->constrained()->cascadeOnDelete();
