@@ -328,5 +328,218 @@ class AdminDashboardTest extends TestCase
 			'name' => 'Child Category 1',
 		]);
 	}
+	
+	
+	public function test_brand_index_page_renders()
+    {
+        $this->withoutMiddleware([
+            \App\Http\Middleware\AdminMiddleware::class,
+        ]);		
+		
+        $response = $this->get('admin/brands');
+		$response->assertStatus(200);
+        $response->assertSee('Brands');
+
+    }
+
+
+    public function test_brand_add_page_renders()
+    {
+        $this->withoutMiddleware([
+            \App\Http\Middleware\AdminMiddleware::class,
+        ]);		
+		
+        $response = $this->get('admin/brands/create');
+		$response->assertStatus(200);
+        $response->assertSee('Add Brand');
+
+    }
+
+    
+    public function test_brand_add_form_name_is_required()
+    {
+        $this->withoutMiddleware([
+            \App\Http\Middleware\AdminMiddleware::class,
+        ]);		
+		
+        $response = $this->from('admin/brands/create')->post('admin/brands',[
+            'name' => '',
+        ]);
+
+        // Should redirect back to the form
+        $response->assertRedirect('admin/brands/create');
+
+         // Assert validation error for 'name'
+        $response->assertSessionHasErrors(['name']);
+    }
+
+    public function test_add_brand_form_creates_category_with_valid_input()
+    {
+        // Optional: Simulate authenticated user
+        // $user = User::factory()->create();
+        // $this->actingAs($user);
+
+        $this->withoutMiddleware([
+            \App\Http\Middleware\AdminMiddleware::class,
+        ]);
+
+        // Simulate form input
+        $formData = [
+            'name' => 'Brand 1',
+        ];
+
+        // Submit POST request to the category creation endpoint       
+        $response = $this->post('admin/brands', $formData); 
+
+        // Assert response status (e.g. redirect to category list)
+        $response->assertRedirect('admin/brands'); 
+
+        // Assert that the category is in the database
+        $this->assertDatabaseHas('brands', [
+            'name' => 'Brand 1',
+        ]);
+    }
+	
+	
+	public function test_color_index_page_renders()
+	{
+		$this->withoutMiddleware([
+			\App\Http\Middleware\AdminMiddleware::class,
+		]);		
+		
+		$response = $this->get('admin/colors');
+		$response->assertStatus(200);
+		$response->assertSee('Colors');
+
+	}
+
+
+	public function test_color_add_page_renders()
+	{
+		$this->withoutMiddleware([
+			\App\Http\Middleware\AdminMiddleware::class,
+		]);		
+		
+		$response = $this->get('admin/colors/create');
+		$response->assertStatus(200);
+		$response->assertSee('Add Color');
+
+	}
+
+
+	public function test_color_add_form_name_is_required()
+	{
+		$this->withoutMiddleware([
+			\App\Http\Middleware\AdminMiddleware::class,
+		]);		
+		
+		$response = $this->from('admin/colors/create')->post('admin/colors',[
+			'name' => '',
+		]);
+
+		// Should redirect back to the form
+		$response->assertRedirect('admin/colors/create');
+
+		 // Assert validation error for 'name'
+		$response->assertSessionHasErrors(['name']);
+	}
+
+	public function test_add_color_form_creates_color_with_valid_input()
+	{
+		// Optional: Simulate authenticated user
+		// $user = User::factory()->create();
+		// $this->actingAs($user);
+
+		$this->withoutMiddleware([
+			\App\Http\Middleware\AdminMiddleware::class,
+		]);
+
+		// Simulate form input
+		$formData = [
+			'name' => 'Black',
+		];
+
+		// Submit POST request to the category creation endpoint       
+		$response = $this->post('admin/colors', $formData); 
+
+		// Assert response status (e.g. redirect to category list)
+		$response->assertRedirect('admin/colors'); 
+
+		// Assert that the category is in the database
+		$this->assertDatabaseHas('colors', [
+			'name' => 'Black',
+		]);
+	}
+	
+	
+	public function test_size_index_page_renders()
+	{
+		$this->withoutMiddleware([
+			\App\Http\Middleware\AdminMiddleware::class,
+		]);		
+		
+		$response = $this->get('admin/sizes');
+		$response->assertStatus(200);
+		$response->assertSee('Sizes');
+
+	}
+
+
+	public function test_size_add_page_renders()
+	{
+		$this->withoutMiddleware([
+			\App\Http\Middleware\AdminMiddleware::class,
+		]);		
+		
+		$response = $this->get('admin/sizes/create');
+		$response->assertStatus(200);
+		$response->assertSee('Add Size');
+
+	}
+
+
+	public function test_size_add_form_name_is_required()
+	{
+		$this->withoutMiddleware([
+			\App\Http\Middleware\AdminMiddleware::class,
+		]);		
+		
+		$response = $this->from('admin/sizes/create')->post('admin/sizes',[
+			'name' => '',
+		]);
+
+		// Should redirect back to the form
+		$response->assertRedirect('admin/sizes/create');
+
+		 // Assert validation error for 'name'
+		$response->assertSessionHasErrors(['name']);
+	}
+
+	public function test_add_size_form_creates_size_with_valid_input()
+	{
+		// Optional: Simulate authenticated user
+		// $user = User::factory()->create();
+		// $this->actingAs($user);
+
+		$this->withoutMiddleware([
+			\App\Http\Middleware\AdminMiddleware::class,
+		]);
+
+		// Simulate form input
+		$formData = [
+			'name' => 'Small',
+		];
+
+		// Submit POST request to the category creation endpoint       
+		$response = $this->post('admin/sizes', $formData); 
+
+		// Assert response status (e.g. redirect to category list)
+		$response->assertRedirect('admin/sizes'); 
+
+		// Assert that the category is in the database
+		$this->assertDatabaseHas('sizes', [
+			'name' => 'Small',
+		]);
+	}
+
 }
- 
